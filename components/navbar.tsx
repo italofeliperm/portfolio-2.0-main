@@ -16,6 +16,7 @@ const navIcons = {
   contact: Mail,
 };
 
+
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -169,10 +170,11 @@ export function Navbar() {
                 }`}
               >
                 {link.href === "about" ? (
-                <User className="h-5 w-5 mb-1" />
+                  <User className="h-5 w-5 mb-1" />
                 ) : (
-                <Folder className="h-5 w-5 mb-1" />
+                  <Folder className="h-5 w-5 mb-1" />
                 )}
+
                 <span className="text-[10px] font-medium leading-none">{link.label}</span>
               </button>
               ))}
@@ -200,10 +202,11 @@ export function Navbar() {
                 }`}
               >
                 {link.href === "experience" ? (
-                <Briefcase className="h-5 w-5 mb-1" />
+                  <Briefcase className="h-5 w-5 mb-1" />
                 ) : (
-                <Mail className="h-5 w-5 mb-1" />
+                  <Mail className="h-5 w-5 mb-1" />
                 )}
+
                 <span className="text-[10px] font-medium leading-none">{link.label}</span>
               </button>
               ))}
