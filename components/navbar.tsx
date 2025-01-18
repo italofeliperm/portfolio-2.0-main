@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Globe, Home, User, Briefcase, Mail, ArrowUp } from "lucide-react";
+import { Menu, X, Globe, Home, User, Briefcase, Mail, ArrowUp, Folder } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useI18nStore, translations } from "@/lib/i18n";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import { useScrollSpy } from "@/hooks/useScrollSpy";
 
 const navIcons = {
   about: User,
-  projects: Briefcase,
+  projects: Folder,
   experience: Briefcase,
   contact: Mail,
 };
@@ -133,68 +133,64 @@ export function Navbar() {
         </div>
       </div>
 
-        </nav>
+          </nav>
 
-        {/* Mobile Bottom Navigation */}
-        <div className="md:hidden fixed bottom-4 left-4 right-4 bg-background/90 backdrop-blur-lg border border-border/40 z-50 rounded-full shadow-lg">
+          {/* Mobile Bottom Navigation */}
+          <div className="md:hidden fixed bottom-4 left-4 right-4 bg-background/90 backdrop-blur-lg border border-border/40 z-50 rounded-full shadow-lg">
           <div className="flex items-center justify-center h-16 relative">
-          <div className="flex items-center justify-between w-full max-w-[85%] mx-auto">
+            <div className="flex items-center justify-between w-full max-w-[85%] mx-auto">
             <div className="flex items-center gap-4 sm:gap-6">
-            {navLinks.slice(0, 2).map((link) => (
+              {navLinks.slice(0, 2).map((link) => (
               <button
-              key={link.href}
-              onClick={() => scrollToSection(link.href)}
-              className={`flex flex-col items-center justify-center w-12 sm:w-14 rounded-full transition-all duration-200 ${
+                key={link.href}
+                onClick={() => scrollToSection(link.href)}
+                className={`flex flex-col items-center justify-center w-12 sm:w-14 rounded-full transition-all duration-200 ${
                 activeSection === link.href ? "text-primary scale-110" : "text-muted-foreground hover:text-primary hover:scale-105"
-              }`}
+                }`}
               >
-              {link.href === "about" ? (
+                {link.href === "about" ? (
                 <User className="h-5 w-5 mb-1" />
-              ) : (
-                <Briefcase className="h-5 w-5 mb-1" />
-              )}
-              <span className="text-[10px] font-medium leading-none">{link.label}</span>
+                ) : (
+                <Folder className="h-5 w-5 mb-1" />
+                )}
+                <span className="text-[10px] font-medium leading-none">{link.label}</span>
               </button>
-            ))}
+              ))}
             </div>
 
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-            <div className="w-10 h-10">
+              <div className="w-10 h-10">
               <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="w-full h-full flex items-center justify-center rounded-full transition-all duration-200 bg-primary text-primary-foreground hover:scale-110 hover:bg-primary/90 shadow-lg border-2 border-background"
-              aria-label="Scroll to top"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="w-full h-full flex items-center justify-center rounded-full transition-all duration-200 bg-primary text-primary-foreground hover:scale-110 hover:bg-primary/90 shadow-lg border-2 border-background"
+                aria-label="Scroll to top"
               >
-              <ArrowUp className="h-5 w-5" />
+                <ArrowUp className="h-5 w-5" />
               </button>
-            </div>
+              </div>
             </div>
 
             <div className="flex items-center gap-4 sm:gap-6">
-            {navLinks.slice(2).map((link) => (
+              {navLinks.slice(2).map((link) => (
               <button
-              key={link.href}
-              onClick={() => scrollToSection(link.href)}
-              className={`flex flex-col items-center justify-center w-12 sm:w-14 rounded-full transition-all duration-200 ${
+                key={link.href}
+                onClick={() => scrollToSection(link.href)}
+                className={`flex flex-col items-center justify-center w-12 sm:w-14 rounded-full transition-all duration-200 ${
                 activeSection === link.href ? "text-primary scale-110" : "text-muted-foreground hover:text-primary hover:scale-105"
-              }`}
+                }`}
               >
-              {link.href === "experience" ? (
+                {link.href === "experience" ? (
                 <Briefcase className="h-5 w-5 mb-1" />
-              ) : (
+                ) : (
                 <Mail className="h-5 w-5 mb-1" />
-              )}
-              <span className="text-[10px] font-medium leading-none">{link.label}</span>
+                )}
+                <span className="text-[10px] font-medium leading-none">{link.label}</span>
               </button>
-            ))}
+              ))}
+            </div>
             </div>
           </div>
           </div>
-        </div>
-
-
         </>
-
-
-  );
+      );
 }
