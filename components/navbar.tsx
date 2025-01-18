@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Globe, Home, User, Briefcase, Mail, ArrowUp, Folder } from "lucide-react";
+import { Menu, X, Home, User, Briefcase, Mail, ArrowUp, Folder } from "lucide-react";
+import GlobeLottie from "./icons/globe-lottie";
+
 import { Button } from "@/components/ui/button";
 import { useI18nStore, translations } from "@/lib/i18n";
 import Link from "next/link";
@@ -126,25 +128,33 @@ export function Navbar() {
               </button>
             ))}
             <Button
-              variant="outline"
+              variant="ghost"
               onClick={toggleLanguage}
-              className="text-foreground bg-background hover:bg-foreground hover:text-background flex items-center gap-2 border-2 border-foreground transition-all duration-300 ease-in-out transform hover:scale-105"
+                className="text-foreground relative pl-2 pr-4 py-2 group"
             >
-              <Globe className="h-4 w-4" />
-              {language.toUpperCase()}
+              <div className="absolute inset-0 group-hover:bg-foreground/5 rounded-lg transition-all duration-300" />
+                <div className="relative flex items-center gap-0 font-medium">
+                  <GlobeLottie />
+                  <span className="-ml-1.5">{language.toUpperCase()}</span>
+                </div>
             </Button>
+
           </div>
 
             {/* Mobile Language Switch */}
             <div className="md:hidden">
-              <Button
-              variant="outline"
-              onClick={toggleLanguage}
-              className="text-foreground bg-background hover:bg-foreground hover:text-background flex items-center gap-2 border-2 border-foreground transition-all duration-300 ease-in-out transform hover:scale-105"
-              >
-              <Globe className="h-4 w-4" />
-              {language.toUpperCase()}
-              </Button>
+                <Button
+                  variant="ghost"
+                  onClick={toggleLanguage}
+                    className="text-foreground relative pl-2 pr-3 py-2 group"
+                >
+                  <div className="absolute inset-0 group-hover:bg-foreground/5 rounded-lg transition-all duration-300" />
+                    <div className="relative flex items-center gap-0 font-medium">
+                      <GlobeLottie />
+                      <span className="-ml-1.5">{language.toUpperCase()}</span>
+                    </div>
+                </Button>
+
             </div>
 
         </div>

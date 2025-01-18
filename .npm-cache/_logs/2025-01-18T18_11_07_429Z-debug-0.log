@@ -6,25 +6,25 @@
 5 silly config load:file:/Users/italofelipe/.npmrc
 6 silly config load:file:/Users/italofelipe/.nvm/versions/node/v23.6.0/etc/npmrc
 7 verbose title npm install lottie-react
-8 verbose argv "install" "lottie-react"
-9 verbose logfile logs-max:10 dir:/Users/italofelipe/Downloads/portfolio-2.0-main/.npm-cache/_logs/2025-01-18T17_30_02_540Z-
-10 verbose logfile /Users/italofelipe/Downloads/portfolio-2.0-main/.npm-cache/_logs/2025-01-18T17_30_02_540Z-debug-0.log
-11 silly logfile start cleaning logs, removing 1 files
+8 verbose argv "install" "lottie-react" "--save"
+9 verbose logfile logs-max:10 dir:/Users/italofelipe/Downloads/portfolio-2.0-main/.npm-cache/_logs/2025-01-18T18_11_07_429Z-
+10 verbose logfile /Users/italofelipe/Downloads/portfolio-2.0-main/.npm-cache/_logs/2025-01-18T18_11_07_429Z-debug-0.log
+11 silly logfile start cleaning logs, removing 2 files
 12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
 13 silly logfile done cleaning log files
 14 silly idealTree buildDeps
 15 silly fetch manifest lottie-react@^2.4.0
 16 silly packumentCache full:https://registry.npmjs.org/lottie-react cache-miss
-17 http cache https://registry.npmjs.org/lottie-react 173ms (cache hit)
-18 silly packumentCache full:https://registry.npmjs.org/lottie-react set size:64186 disposed:false
+17 http fetch GET 200 https://registry.npmjs.org/lottie-react 936ms (cache updated)
+18 silly packumentCache full:https://registry.npmjs.org/lottie-react set size:undefined disposed:false
 19 silly fetch manifest react@18.2.0
 20 silly packumentCache full:https://registry.npmjs.org/react cache-miss
-21 http cache https://registry.npmjs.org/react 20ms (cache hit)
-22 silly packumentCache full:https://registry.npmjs.org/react set size:5358726 disposed:false
+21 http fetch GET 200 https://registry.npmjs.org/react 123ms (cache updated)
+22 silly packumentCache full:https://registry.npmjs.org/react set size:undefined disposed:false
 23 silly fetch manifest react-dom@18.2.0
 24 silly packumentCache full:https://registry.npmjs.org/react-dom cache-miss
-25 http cache https://registry.npmjs.org/react-dom 23ms (cache hit)
-26 silly packumentCache full:https://registry.npmjs.org/react-dom set size:6658468 disposed:false
+25 http fetch GET 200 https://registry.npmjs.org/react-dom 138ms (cache updated)
+26 silly packumentCache full:https://registry.npmjs.org/react-dom set size:undefined disposed:false
 27 silly placeDep ROOT lottie-react@2.4.0 REPLACE for: nextjs@0.1.0 want: ^2.4.0
 28 silly reify moves {}
 29 silly audit bulk request {
@@ -367,6 +367,7 @@
 29 silly audit   'js-tokens': [ '4.0.0' ],
 29 silly audit   'js-yaml': [ '4.1.0' ],
 29 silly audit   'json-buffer': [ '3.0.1' ],
+29 silly audit   'json-loader': [ '0.5.7' ],
 29 silly audit   'json-schema-traverse': [ '0.4.1' ],
 29 silly audit   'json-stable-stringify-without-jsonify': [ '1.0.1' ],
 29 silly audit   json5: [ '1.0.2' ],
@@ -635,7 +636,7 @@
 81 silly reify   '/Users/italofelipe/Downloads/portfolio-2.0-main/node_modules/@img/sharp-darwin-arm64'
 81 silly reify ]
 82 http cache @emnapi/runtime@https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.3.1.tgz 0ms (cache hit)
-83 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 423ms
+83 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 308ms
 84 silly audit report {
 84 silly audit report   'cross-spawn': [
 84 silly audit report     {
@@ -734,21 +735,21 @@
 87 silly packumentCache corgi:https://registry.npmjs.org/next cache-miss
 88 silly packumentCache corgi:https://registry.npmjs.org/postcss cache-miss
 89 silly packumentCache corgi:https://registry.npmjs.org/zod cache-miss
-90 http cache https://registry.npmjs.org/cross-spawn 234ms (cache hit)
-91 silly packumentCache corgi:https://registry.npmjs.org/cross-spawn set size:44626 disposed:false
-92 http cache https://registry.npmjs.org/nanoid 237ms (cache hit)
-93 silly packumentCache corgi:https://registry.npmjs.org/nanoid set size:138004 disposed:false
-94 http cache https://registry.npmjs.org/postcss 239ms (cache hit)
-95 silly packumentCache corgi:https://registry.npmjs.org/postcss set size:332926 disposed:false
-96 http cache https://registry.npmjs.org/zod 245ms (cache hit)
-97 silly packumentCache corgi:https://registry.npmjs.org/zod set size:658196 disposed:false
-98 http cache https://registry.npmjs.org/next 295ms (cache hit)
-99 silly packumentCache corgi:https://registry.npmjs.org/next set size:18456043 disposed:false
+90 http cache https://registry.npmjs.org/nanoid 184ms (cache hit)
+91 silly packumentCache corgi:https://registry.npmjs.org/nanoid set size:138004 disposed:false
+92 http cache https://registry.npmjs.org/zod 186ms (cache hit)
+93 silly packumentCache corgi:https://registry.npmjs.org/zod set size:658196 disposed:false
+94 http cache https://registry.npmjs.org/cross-spawn 199ms (cache hit)
+95 silly packumentCache corgi:https://registry.npmjs.org/cross-spawn set size:44626 disposed:false
+96 http cache https://registry.npmjs.org/next 238ms (cache hit)
+97 silly packumentCache corgi:https://registry.npmjs.org/next set size:18456043 disposed:false
+98 http cache https://registry.npmjs.org/postcss 717ms (cache hit)
+99 silly packumentCache corgi:https://registry.npmjs.org/postcss set size:332926 disposed:false
 100 silly packumentCache corgi:https://registry.npmjs.org/eslint cache-miss
 101 silly packumentCache corgi:https://registry.npmjs.org/foreground-child cache-miss
-102 http cache https://registry.npmjs.org/foreground-child 8ms (cache hit)
+102 http cache https://registry.npmjs.org/foreground-child 7ms (cache hit)
 103 silly packumentCache corgi:https://registry.npmjs.org/foreground-child set size:20383 disposed:false
-104 http cache https://registry.npmjs.org/eslint 13ms (cache hit)
+104 http cache https://registry.npmjs.org/eslint 11ms (cache hit)
 105 silly packumentCache corgi:https://registry.npmjs.org/eslint set size:1022000 disposed:false
 106 silly packumentCache corgi:https://registry.npmjs.org/autoprefixer cache-miss
 107 silly packumentCache corgi:https://registry.npmjs.org/postcss-import cache-miss
@@ -756,17 +757,17 @@
 109 silly packumentCache corgi:https://registry.npmjs.org/postcss-load-config cache-miss
 110 silly packumentCache corgi:https://registry.npmjs.org/postcss-nested cache-miss
 111 silly packumentCache corgi:https://registry.npmjs.org/tailwindcss cache-miss
-112 http cache https://registry.npmjs.org/autoprefixer 57ms (cache hit)
+112 http cache https://registry.npmjs.org/autoprefixer 54ms (cache hit)
 113 silly packumentCache corgi:https://registry.npmjs.org/autoprefixer set size:290367 disposed:false
-114 http cache https://registry.npmjs.org/postcss-import 63ms (cache hit)
-115 silly packumentCache corgi:https://registry.npmjs.org/postcss-import set size:51326 disposed:false
-116 http cache https://registry.npmjs.org/postcss-load-config 66ms (cache hit)
+114 http cache https://registry.npmjs.org/postcss-js 57ms (cache hit)
+115 silly packumentCache corgi:https://registry.npmjs.org/postcss-js set size:20759 disposed:false
+116 http cache https://registry.npmjs.org/postcss-load-config 58ms (cache hit)
 117 silly packumentCache corgi:https://registry.npmjs.org/postcss-load-config set size:37999 disposed:false
-118 http cache https://registry.npmjs.org/postcss-nested 71ms (cache hit)
-119 silly packumentCache corgi:https://registry.npmjs.org/postcss-nested set size:41645 disposed:false
-120 http cache https://registry.npmjs.org/postcss-js 75ms (cache hit)
-121 silly packumentCache corgi:https://registry.npmjs.org/postcss-js set size:20759 disposed:false
-122 http cache https://registry.npmjs.org/tailwindcss 88ms (cache hit)
+118 http cache https://registry.npmjs.org/postcss-import 61ms (cache hit)
+119 silly packumentCache corgi:https://registry.npmjs.org/postcss-import set size:51326 disposed:false
+120 http cache https://registry.npmjs.org/postcss-nested 62ms (cache hit)
+121 silly packumentCache corgi:https://registry.npmjs.org/postcss-nested set size:41645 disposed:false
+122 http cache https://registry.npmjs.org/tailwindcss 72ms (cache hit)
 123 silly packumentCache corgi:https://registry.npmjs.org/tailwindcss set size:3991038 disposed:false
 124 silly ADD
 125 silly ADD

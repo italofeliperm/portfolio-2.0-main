@@ -7,9 +7,9 @@
 6 silly config load:file:/Users/italofelipe/.nvm/versions/node/v23.6.0/etc/npmrc
 7 verbose title npm config get registry
 8 verbose argv "config" "get" "registry"
-9 verbose logfile logs-max:10 dir:/Users/italofelipe/Downloads/portfolio-2.0-main/.npm-cache/_logs/2025-01-18T16_19_05_191Z-
-10 verbose logfile /Users/italofelipe/Downloads/portfolio-2.0-main/.npm-cache/_logs/2025-01-18T16_19_05_191Z-debug-0.log
-11 silly logfile start cleaning logs, removing 1 files
+9 verbose logfile logs-max:10 dir:/Users/italofelipe/Downloads/portfolio-2.0-main/.npm-cache/_logs/2025-01-18T18_10_22_604Z-
+10 verbose logfile /Users/italofelipe/Downloads/portfolio-2.0-main/.npm-cache/_logs/2025-01-18T18_10_22_604Z-debug-0.log
+11 silly logfile start cleaning logs, removing 2 files
 12 verbose cwd /Users/italofelipe/Downloads/portfolio-2.0-main
 13 verbose os Darwin 24.1.0
 14 verbose node v23.6.0
