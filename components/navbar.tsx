@@ -20,6 +20,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const activeSection = useScrollSpy();
+
   const { language, setLanguage } = useI18nStore();
   const t = translations[language];
 
@@ -38,6 +39,9 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+
+
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -54,6 +58,23 @@ export function Navbar() {
     }
     setIsOpen(false);
   };
+
+  const resetActive = () => {
+    setIsOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    
+    // Force a scroll update after animation completes
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "instant"
+      });
+    }, 500); // Wait for smooth scroll to complete
+  };
+
 
   const navLinks = [
     { href: "about", label: t.nav.about },
@@ -75,13 +96,8 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
               <button
-              onClick={() => {
-                window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-                });
-                setIsOpen(false);
-              }}
+                onClick={resetActive}
+
               className="hover:opacity-80 transition-opacity"
               >
               <Image
@@ -161,7 +177,7 @@ export function Navbar() {
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
               <div className="w-10 h-10">
               <button
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                onClick={resetActive}
                 className="w-full h-full flex items-center justify-center rounded-full transition-all duration-200 bg-primary text-primary-foreground hover:scale-110 hover:bg-primary/90 shadow-lg border-2 border-background"
                 aria-label="Scroll to top"
               >
