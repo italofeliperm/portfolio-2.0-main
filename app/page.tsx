@@ -32,7 +32,13 @@ import {
   MessageCircle,
   Send,
   Headphones,
+  FileType,
+  GitBranch,
+  Coffee,
+  Container,
+  Workflow,
 } from "lucide-react";
+
 
 export default function Home() {
   const { language } = useI18nStore();
@@ -45,11 +51,26 @@ export default function Home() {
   const [modalMessage, setModalMessage] = useState("");
 
   const skills = {
-    // frontend: ["React.js", "Next.js", "TypeScript", "Tailwind CSS"],
-    frontend: ["React.js", "Next.js", "TypeScript"],
-    backend: ["Java", "Spring Boot", "Node.js"],
-    devops: ["Docker", "CI/CD", "GitHub Actions"],
-    database: ["PostgreSQL", "SQL Server", "Oracle DB"],
+    frontend: [
+      { name: "React.js", icon: <Code2 className="h-4 w-4" /> },
+      { name: "Next.js", icon: <Zap className="h-4 w-4" /> },
+      { name: "TypeScript", icon: <FileType className="h-4 w-4" /> },
+    ],
+    backend: [
+      { name: "Java", icon: <Coffee className="h-4 w-4" /> },
+      { name: "Spring Boot", icon: <Zap className="h-4 w-4" /> },
+      { name: "Node.js", icon: <Server className="h-4 w-4" /> },
+    ],
+    devops: [
+      { name: "Docker", icon: <Container className="h-4 w-4" /> },
+      { name: "CI/CD", icon: <GitBranch className="h-4 w-4" /> },
+      { name: "GitHub Actions", icon: <Workflow className="h-4 w-4" /> },
+    ],
+    database: [
+      { name: "PostgreSQL", icon: <Database className="h-4 w-4" /> },
+      { name: "SQL Server", icon: <Database className="h-4 w-4" /> },
+      { name: "Oracle DB", icon: <Database className="h-4 w-4" /> },
+    ],
   };
 
   const projects = [
@@ -392,13 +413,13 @@ export default function Home() {
                       <div className="space-y-2">
                         {skills.frontend.map((skill, index) => (
                           <div
-                            key={index}
-                            className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
+                          key={index}
+                          className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
                           >
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary/60" />
-                            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
-                              {skill}
-                            </span>
+                          <div className="text-primary">{skill.icon}</div>
+                          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                            {skill.name}
+                          </span>
                           </div>
                         ))}
                       </div>
@@ -419,13 +440,13 @@ export default function Home() {
                       <div className="space-y-2">
                         {skills.backend.map((skill, index) => (
                           <div
-                            key={index}
-                            className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
+                          key={index}
+                          className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
                           >
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary/60" />
-                            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
-                              {skill}
-                            </span>
+                          <div className="text-primary">{skill.icon}</div>
+                          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                            {skill.name}
+                          </span>
                           </div>
                         ))}
                       </div>
@@ -446,13 +467,13 @@ export default function Home() {
                       <div className="space-y-2">
                         {skills.devops.map((skill, index) => (
                           <div
-                            key={index}
-                            className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
+                          key={index}
+                          className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
                           >
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary/60" />
-                            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
-                              {skill}
-                            </span>
+                          <div className="text-primary">{skill.icon}</div>
+                          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                            {skill.name}
+                          </span>
                           </div>
                         ))}
                       </div>
@@ -473,13 +494,13 @@ export default function Home() {
                       <div className="space-y-2">
                         {skills.database.map((skill, index) => (
                           <div
-                            key={index}
-                            className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
+                          key={index}
+                          className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
                           >
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary/60" />
-                            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
-                              {skill}
-                            </span>
+                          <div className="text-primary">{skill.icon}</div>
+                          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                            {skill.name}
+                          </span>
                           </div>
                         ))}
                       </div>
