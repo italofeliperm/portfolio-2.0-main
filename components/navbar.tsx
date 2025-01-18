@@ -152,8 +152,10 @@ export function Navbar() {
           </nav>
 
             {/* Mobile Bottom Navigation */}
-            <div className={`md:hidden fixed bottom-4 left-4 right-4 bg-background/90 backdrop-blur-lg border border-border/40 z-50 rounded-full shadow-lg transition-all duration-300 ${
-            !scrolled ? 'opacity-0 translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'
+            <div className={`md:hidden fixed bottom-4 left-4 right-4 bg-background/90 border border-border/40 z-50 rounded-full shadow-lg transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+              !scrolled 
+              ? 'opacity-0 translate-y-full pointer-events-none blur-xl scale-95 rotate-3' 
+              : 'opacity-100 translate-y-0 backdrop-blur-sm blur-0 scale-100 rotate-0'
             }`}>
           <div className="flex items-center justify-center h-16 relative">
             <div className="flex items-center justify-between w-full max-w-[85%] mx-auto">
