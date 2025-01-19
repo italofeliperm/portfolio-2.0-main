@@ -3,6 +3,21 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+
+const GitHubIcon = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+  </svg>
+);
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Modal } from "@/components/ui/modal";
@@ -16,7 +31,6 @@ import myPhoto from "@/assets/images/profile-bl.png";
 
 // Icons import
 import {
-  Github,
   Linkedin,
   ExternalLink,
   Code2,
@@ -39,6 +53,7 @@ import {
   Container,
   Workflow,
 } from "lucide-react";
+
 
 
 export default function Home() {
@@ -224,7 +239,7 @@ export default function Home() {
       default:
         return "";
     }
-  };
+  }
 
   const showUnavailableMessage = (service: string) => {
     setModalMessage(`${service} indisponível no momento.`);
@@ -233,22 +248,22 @@ export default function Home() {
 
   return (
     <>
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="relative min-h-screen"
-        >
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="relative min-h-screen"
+      >
         {/* Background Image */}
         <div 
           className="fixed inset-0 z-0 backdrop-blur-sm"
           style={{
-          backgroundImage: `url(${foto1.src})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          opacity: '0.1',
-          filter: 'blur(2px)'
+            backgroundImage: `url(${foto1.src})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            opacity: '0.1',
+            filter: 'blur(2px)'
           }}
         />
 
@@ -259,7 +274,7 @@ export default function Home() {
         <div className="bg-gradient-overlay" />
 
         {/* Content */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -267,6 +282,7 @@ export default function Home() {
         >
           <Navbar />
           <main>
+
             {/* Hero Section */}
             <motion.section 
               initial="initial"
@@ -320,7 +336,7 @@ export default function Home() {
                   className="gap-2"
                   onClick={() => window.open("https://github.com/gabrielanselmoa", "_blank")}
                   >
-                  <Github className="h-5 w-5" />
+                    <GitHubIcon />
                   GitHub
                   </Button>
                   <Button 
@@ -434,8 +450,8 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
-              </div>
-            </section>
+                </div>
+              </motion.section>
 
             {/* Skills Section */}
             <motion.section
@@ -560,8 +576,8 @@ export default function Home() {
                     </div>
                   </Card>
                 </div>
-              </div>
-            </section>
+                </div>
+              </motion.section>
 
             {/* Projects Section */}
             <motion.section
@@ -620,7 +636,7 @@ export default function Home() {
                       </div>
                     </Card>
                     ))}
-                  </motion.div>
+                    </motion.div>
                   </div>
                 </motion.section>
 
@@ -753,7 +769,7 @@ export default function Home() {
                       </div>
                     </Card>
                     ))}
-                  </motion.div>
+                    </motion.div>
                   </div>
                 </motion.section>
 
@@ -886,10 +902,10 @@ export default function Home() {
                   </div>
                 </div>
                 </Card>
-              </motion.div>
-              </div>
-            </motion.section>
-            </main>
+                </motion.div>
+                </div>
+              </motion.section>
+              </main>
             <Footer />
             </motion.div>
           </motion.div>
@@ -904,3 +920,4 @@ export default function Home() {
           </>
         );
       }
+
