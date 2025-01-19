@@ -1,6 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+
+// Animation classes
+const fadeInSection = ['opacity-0', 'translate-y-10', 'transition-all', 'duration-1000', 'ease-out'];
+const fadeInVisible = ['opacity-100', 'translate-y-0'];
+const blurTransition = ['backdrop-blur-sm', 'transition-all', 'duration-500', 'ease-out', 'hover:backdrop-blur-none'];
+const cardTransition = ['transform', 'transition-all', 'duration-500', 'ease-out', 'hover:scale-[1.02]', 'hover:shadow-xl'];
 import Image from "next/image";
 
 const GitHubIcon = () => (
@@ -59,6 +65,28 @@ import {
 export default function Home() {
   const { language } = useI18nStore();
   const t = translations[language];
+
+  // Add intersection observer setup
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+            entry.target.classList.add(...fadeInVisible);
+            }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll('.fade-in-section').forEach((section) => {
+      observer.observe(section);
+      section.classList.add(...fadeInSection);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
 
 
 
@@ -267,16 +295,12 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10">
-
-
           <Navbar />
-          <main>
-
-
+            <main>
             {/* Hero Section */}
-            <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-
+            <section className="fade-in-section min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
               <div className="text-center">
+
                 <p className="text-lg mb-4 text-muted-foreground">
                   {t.hero.greeting}
                 </p>
@@ -325,7 +349,7 @@ export default function Home() {
             {/* About Section */}
             <section
               id="about"
-              className="py-20 px-4 sm:px-6 lg:px-8"
+              className="fade-in-section py-20 px-4 sm:px-6 lg:px-8"
             >
               <div className="max-w-7xl mx-auto">
 
@@ -421,7 +445,7 @@ export default function Home() {
             </section>
 
             {/* Skills Section */}
-            <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
+            <section id="skills" className="fade-in-section py-20 px-4 sm:px-6 lg:px-8">
               <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl font-bold mb-16 text-center">
                 {t.skills.title}
@@ -445,7 +469,8 @@ export default function Home() {
                           {skills.frontend.map((skill, index) => (
                             <div
                               key={index}
-                              className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
+                              className={`flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500`}
+                              style={{ transitionDelay: `${index * 150}ms` }}
                             >
                               <div className="text-primary">{skill.icon}</div>
                               <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
@@ -550,15 +575,18 @@ export default function Home() {
 
 
             {/* Projects Section */}
-            <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50">
+            <section id="projects" className="fade-in-section py-20 px-4 sm:px-6 lg:px-8 bg-muted/50">
               <div className="max-w-7xl mx-auto">
                 <h2 className="text-3xl font-bold mb-12 text-center">
                   {t.projects.title}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {projects.map((project, index) => (
-                    <div key={index}>
-                      <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+                    {projects.map((project, index) => (
+                    <div key={index} style={{ animationDelay: `${index * 200}ms` }}>
+                        <Card 
+                        className={`${cardTransition.join(' ')} ${blurTransition.join(' ')} overflow-hidden hover:bg-card/60`}
+                        style={{ transitionDelay: `${index * 150}ms` }}
+                        >
 
                         <div
                           className="h-48 bg-cover bg-center project-image"
@@ -601,7 +629,7 @@ export default function Home() {
 
             <section
               id="experience"
-              className="py-20 px-4 sm:px-6 lg:px-8"
+              className="fade-in-section py-20 px-4 sm:px-6 lg:px-8"
             >
               <div className="max-w-5xl mx-auto">
                 <h2
@@ -613,7 +641,10 @@ export default function Home() {
                   {experiences.map((exp, index) => (
                     <div key={index}>
 
-                      <Card className="bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all overflow-hidden">
+                        <Card 
+                          className={`${cardTransition.join(' ')} ${blurTransition.join(' ')} overflow-hidden hover:bg-card/60`}
+                          style={{ transitionDelay: `${index * 150}ms` }}
+                        >
                         <div className="p-6">
                           <div className="flex items-start justify-between gap-4">
                             <div className="flex-1">
@@ -721,14 +752,17 @@ export default function Home() {
             </section>
 
             {/* Contact Section */}
-            <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <section id="contact" className="fade-in-section relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
               <div className="relative max-w-5xl mx-auto text-center">
                 <h2 className="text-3xl font-bold mb-4">{t.contact.title}</h2>
                 <p className="text-muted-foreground mb-12">
                   {t.contact.description}
                 </p>
                 <div>
-                  <Card className="overflow-hidden bg-card/50 backdrop-blur-sm">
+                    <Card 
+                      className={`${cardTransition.join(' ')} ${blurTransition.join(' ')} overflow-hidden bg-card/50 hover:bg-card/60`}
+                      style={{ transitionDelay: "150ms" }}
+                    >
 
                     <div className="p-6">
                       {/* Profile section */}
@@ -747,116 +781,75 @@ export default function Home() {
                         </div>
                       </div>
 
-                      {/* Contact options */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                        {/* Scheduling */}
-                        <div>
+                        {/* Contact options */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                        {[
+                          {
+                          title: t.contact.schedule.title,
+                          description: t.contact.schedule.description,
+                          icon: <Calendar className="h-6 w-6 text-primary" />,
+                          onClick: () => window.open("mailto:gabrielanselmo29@gmail.com?subject=Agendamento de Reunião"),
+                          },
+                          {
+                          title: t.contact.whatsapp.title,
+                          description: t.contact.whatsapp.description,
+                          icon: <MessageCircle className="h-6 w-6 text-primary" />,
+                          onClick: () => showUnavailableMessage("WhatsApp Business"),
+                          },
+                          {
+                          title: t.contact.telegram.title,
+                          description: t.contact.telegram.description,
+                          icon: <Send className="h-6 w-6 text-primary" />,
+                          onClick: () => showUnavailableMessage("Telegram"),
+                          },
+                          {
+                          title: t.contact.discord.title,
+                          description: t.contact.discord.description,
+                          icon: <Headphones className="h-6 w-6 text-primary" />,
+                          onClick: () => showUnavailableMessage("Discord"),
+                          },
+                        ].map((option, index) => (
+                          <div key={index}>
                           <Card
-                            className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                            onClick={() => window.open("mailto:gabrielanselmo29@gmail.com?subject=Agendamento de Reunião")}
+                            className={`p-6 ${cardTransition.join(' ')} ${blurTransition.join(' ')} bg-card/30 group cursor-pointer hover:bg-card/60`}
+                            style={{ transitionDelay: `${index * 150}ms` }}
+                            onClick={option.onClick}
                           >
                             <div className="flex items-center gap-4">
-                              <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                                <Calendar className="h-6 w-6 text-primary" />
-                              </div>
-                              <div className="text-left">
-                                <h3 className="font-semibold mb-1">
-                                  {t.contact.schedule.title}
-                                </h3>
-                                <p className="text-sm text-muted-foreground">
-                                  {t.contact.schedule.description}
-                                </p>
-                              </div>
+                            <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                              {option.icon}
+                            </div>
+                            <div className="text-left">
+                              <h3 className="font-semibold mb-1">{option.title}</h3>
+                              <p className="text-sm text-muted-foreground">{option.description}</p>
+                            </div>
                             </div>
                           </Card>
+                          </div>
+                        ))}
                         </div>
 
-                        {/* WhatsApp Business */}
-                        <div>
-                          <Card
-                            className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                            onClick={() => showUnavailableMessage("WhatsApp Business")}
-                          >
-                            <div className="flex items-center gap-4">
-                              <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                                <MessageCircle className="h-6 w-6 text-primary" />
-                              </div>
-                              <div className="text-left">
-                                <h3 className="font-semibold mb-1">
-                                  {t.contact.whatsapp.title}
-                                </h3>
-                                <p className="text-sm text-muted-foreground">
-                                  {t.contact.whatsapp.description}
-                                </p>
-                              </div>
-                            </div>
-                          </Card>
-                        </div>
-
-                        {/* Telegram */}
-                        <div>
-                          <Card
-                            className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                            onClick={() => showUnavailableMessage("Telegram")}
-                          >
-                            <div className="flex items-center gap-4">
-                              <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                                <Send className="h-6 w-6 text-primary" />
-                              </div>
-                              <div className="text-left">
-                                <h3 className="font-semibold mb-1">
-                                  {t.contact.telegram.title}
-                                </h3>
-                                <p className="text-sm text-muted-foreground">
-                                  {t.contact.telegram.description}
-                                </p>
-                              </div>
-                            </div>
-                          </Card>
-                        </div>
-
-                        {/* Discord */}
-                        <div>
-                          <Card
-                            className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                            onClick={() => showUnavailableMessage("Discord")}
-                          >
-                            <div className="flex items-center gap-4">
-                              <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                                <Headphones className="h-6 w-6 text-primary" />
-                              </div>
-                              <div className="text-left">
-                                <h3 className="font-semibold mb-1">
-                                  {t.contact.discord.title}
-                                </h3>
-                                <p className="text-sm text-muted-foreground">
-                                  {t.contact.discord.description}
-                                </p>
-                              </div>
-                            </div>
-                          </Card>
-                        </div>
-                      </div>
                     </div>
                   </Card>
                 </div>
               </div>
             </section>
-          </main>
-          <Footer />
-        </div>
-        </div>
+                    </main>
+                    <Footer />
+                  </div>
+                  </div>
 
-        <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        >
-        <div className="text-center">
-          <h3 className="text-lg font-semibold mb-2">Aviso</h3>
-          <p className="text-muted-foreground">{modalMessage}</p>
-        </div>
-        </Modal>
-      </>
-      );
-    }
+                  <Modal
+                  isOpen={isModalOpen}
+                  onClose={() => setIsModalOpen(false)}
+                  >
+                  <div className="text-center">
+                    <h3 className="text-lg font-semibold mb-2">Aviso</h3>
+                    <p className="text-muted-foreground">{modalMessage}</p>
+                  </div>
+                  </Modal>
+                </>
+                );
+              }
+
 
