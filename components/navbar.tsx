@@ -130,13 +130,13 @@ export function Navbar() {
             <Button
               variant="ghost"
               onClick={toggleLanguage}
-                className="text-foreground relative pl-2 pr-4 py-2 group"
+              className="text-foreground relative px-3 py-2 group"
             >
               <div className="absolute inset-0 group-hover:bg-foreground/5 rounded-lg transition-all duration-300" />
-                <div className="relative flex items-center gap-0 font-medium">
-                  <GlobeLottie />
-                  <span className="-ml-1.5">{language.toUpperCase()}</span>
-                </div>
+              <div className="relative z-10 flex items-center justify-center gap-0.5 font-medium">
+              <GlobeLottie />
+              <span>{language.toUpperCase()}</span>
+              </div>
             </Button>
 
           </div>
@@ -146,13 +146,13 @@ export function Navbar() {
                 <Button
                   variant="ghost"
                   onClick={toggleLanguage}
-                    className="text-foreground relative pl-2 pr-3 py-2 group"
+                  className="text-foreground relative px-3 py-2 group"
                 >
                   <div className="absolute inset-0 group-hover:bg-foreground/5 rounded-lg transition-all duration-300" />
-                    <div className="relative flex items-center gap-0 font-medium">
-                      <GlobeLottie />
-                      <span className="-ml-1.5">{language.toUpperCase()}</span>
-                    </div>
+                  <div className="relative z-10 flex items-center justify-center gap-0.5 font-medium">
+                  <GlobeLottie />
+                  <span>{language.toUpperCase()}</span>
+                  </div>
                 </Button>
 
             </div>

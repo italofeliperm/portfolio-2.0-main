@@ -8,12 +8,8 @@ const nextConfig = {
   webpack: (config) => {
     config.module.rules.push({
       test: /\.json$/,
-      type: 'javascript/auto',
-      use: [
-        {
-          loader: 'json-loader'
-        }
-      ]
+      use: ['raw-loader'],
+      type: 'javascript/auto'
     });
     return config;
   },
