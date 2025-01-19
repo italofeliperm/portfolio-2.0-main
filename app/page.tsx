@@ -4,6 +4,41 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+
+const containerVariants = {
+  initial: { 
+    opacity: 0,
+    y: 20
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.215, 0.61, 0.355, 1],
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const fadeUpVariants = {
+  initial: { 
+    opacity: 0,
+    y: 20
+  },
+  animate: { 
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.215, 0.61, 0.355, 1]
+    }
+  }
+};
+
+
+
+
 const GitHubIcon = () => (
   <svg
     width="20"
@@ -60,11 +95,8 @@ export default function Home() {
   const { language } = useI18nStore();
   const t = translations[language];
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 }
-  };
+
+
 
   const [expandedExperience, setExpandedExperience] = useState<number | null>(
     null
@@ -249,9 +281,10 @@ export default function Home() {
   return (
     <>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        key="main-container"
+        variants={containerVariants}
+        initial="initial"
+        animate="animate"
         className="relative min-h-screen"
       >
         {/* Background Image */}
@@ -275,68 +308,68 @@ export default function Home() {
 
         {/* Content */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          key="content-wrapper"
+          variants={containerVariants}
           className="relative z-10"
         >
           <Navbar />
           <main>
 
+
             {/* Hero Section */}
             <motion.section 
+              key="hero-section"
+              variants={containerVariants}
               initial="initial"
-              animate="animate"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-200px" }}
               className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8"
             >
-              <div className="text-center">
+
+              <motion.div variants={fadeUpVariants} className="text-center">
               <motion.p 
-                variants={fadeInUp}
+                variants={fadeUpVariants}
                 className="text-lg mb-4 text-muted-foreground"
               >
                   {t.hero.greeting}
                 </motion.p>
-                <motion.div 
-                  variants={fadeInUp}
-                  className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 mx-auto mb-8"
-                >
-                  <Image
-                  src={myPhoto}
-                  alt="Profile"
-                  className="rounded-full object-cover"
-                  fill
-                  priority
-                  />
-                </motion.div>
-                <motion.h1 
-                  variants={fadeInUp}
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
-                >
-                  {t.hero.name}
-                </motion.h1>
-
-                <motion.h2 
-                  variants={fadeInUp}
-                  className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-8"
-                >
-                  {t.hero.role}
-                </motion.h2>
-                <motion.p 
-                  variants={fadeInUp}
-                  className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12 md:whitespace-nowrap"
-                >
-                  {t.hero.description}
-                </motion.p>
-                <motion.div 
-                  variants={fadeInUp}
-                  className="flex justify-center space-x-4"
-                >
+              <motion.div 
+                variants={fadeUpVariants}
+                className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 mx-auto mb-8"
+              >
+                <Image
+                src={myPhoto}
+                alt="Profile"
+                className="rounded-full object-cover"
+                fill
+                priority
+                />
+              </motion.div>
+              <motion.h1 
+                variants={fadeUpVariants}
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
+              >
+                {t.hero.name}
+              </motion.h1>
+              <motion.h2 
+                variants={fadeUpVariants}
+                className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-8"
+              >
+                {t.hero.role}
+              </motion.h2>
+              <motion.p 
+                variants={fadeUpVariants}
+                className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12 md:whitespace-nowrap"
+              >
+                {t.hero.description}
+              </motion.p>
+                <motion.div variants={fadeUpVariants} className="flex justify-center space-x-4">
                   <Button 
                   size="lg" 
                   className="gap-2"
                   onClick={() => window.open("https://github.com/gabrielanselmoa", "_blank")}
                   >
-                    <GitHubIcon />
+                  <GitHubIcon />
                   GitHub
                   </Button>
                   <Button 
@@ -349,19 +382,22 @@ export default function Home() {
                   LinkedIn
                   </Button>
                 </motion.div>
-                </div>
+                  </motion.div>
+
               </motion.section>
 
             {/* About Section */}
             <motion.section
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              key="about-section"
+              variants={containerVariants}
+              initial="initial"
+              whileInView="animate"
+
+              viewport={{ once: true, margin: "-200px" }}
               id="about" 
               className="py-20 px-4 sm:px-6 lg:px-8"
             >
-              <div className="max-w-7xl mx-auto">
+              <motion.div variants={fadeUpVariants} className="max-w-7xl mx-auto">
                 <h2 className="text-3xl font-bold mb-16 text-center">
                   {t.about.title}
                 </h2>
@@ -450,24 +486,30 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
-                </div>
+                </motion.div>
               </motion.section>
 
             {/* Skills Section */}
             <motion.section
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              key="skills-section"
+              variants={containerVariants}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-200px" }}
+
               id="skills" 
               className="py-20 px-4 sm:px-6 lg:px-8"
             >
-              <div className="max-w-7xl mx-auto">
-                <h2 className="text-3xl font-bold mb-16 text-center">
-                  {t.skills.title}
-                </h2>
+              <motion.div 
+              variants={fadeUpVariants}
+              className="max-w-7xl mx-auto"
+              >
+              <h2 className="text-3xl font-bold mb-16 text-center">
+                {t.skills.title}
+              </h2>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+
                   {/* Frontend Skills */}
                   <Card className="bg-card/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500 group">
                     <div className="p-6">
@@ -576,94 +618,98 @@ export default function Home() {
                     </div>
                   </Card>
                 </div>
-                </div>
+                </motion.div>
               </motion.section>
 
             {/* Projects Section */}
             <motion.section
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              key="projects-section"
+              variants={containerVariants}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-200px" }}
+
               id="projects"
               className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50"
             >
-              <div className="max-w-7xl mx-auto">
-                <h2 className="text-3xl font-bold mb-12 text-center">
-                  {t.projects.title}
-                </h2>
+              <motion.div 
+              variants={fadeUpVariants}
+              className="max-w-7xl mx-auto"
+              >
+              <h2 className="text-3xl font-bold mb-12 text-center">
+                {t.projects.title}
+              </h2>
+
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
+                  variants={fadeUpVariants}
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                   {projects.map((project, index) => (
-                    <Card
-                      key={index}
-                      className="overflow-hidden hover:shadow-lg transition-shadow"
+                  <Card
+                    key={index}
+                    className="overflow-hidden hover:shadow-lg transition-shadow"
+                  >
+                    <div
+                    className="h-48 bg-cover bg-center project-image"
+                    style={{ backgroundImage: `url(${project.image})` }}
+                    />
+                    <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-4">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                      >
+                        {tag}
+                      </span>
+                      ))}
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="w-full gap-2"
+                      onClick={() => window.open(project.link, "_blank")}
                     >
-                      <div
-                        className="h-48 bg-cover bg-center project-image"
-                        style={{ backgroundImage: `url(${project.image})` }}
-                      />
-                      <div className="p-6">
-                        <h3 className="text-xl font-semibold mb-2">
-                          {project.title}
-                        </h3>
-                        <p className="text-muted-foreground mb-4">
-                          {project.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {project.tags.map((tag, tagIndex) => (
-                            <span
-                              key={tagIndex}
-                              className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        <Button
-                          variant="outline"
-                          className="w-full gap-2"
-                          onClick={() => window.open(project.link, "_blank")}
-                        >
-                          {t.projects.viewProject}
-                          <ExternalLink className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </Card>
-                    ))}
-                    </motion.div>
-                  </div>
-                </motion.section>
+                      {t.projects.viewProject}
+                      <ExternalLink className="h-4 w-4" />
+                    </Button>
+                    </div>
+                  </Card>
+                  ))}
+                </motion.div>
+                </motion.div>
+              </motion.section>
+
 
             {/* Experience Section */}
             <motion.section
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              key="experience-section"
+              variants={containerVariants}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-200px" }}
+
               id="experience" 
               className="py-20 px-4 sm:px-6 lg:px-8"
             >
-              <div className="max-w-5xl mx-auto">
-                <h2 className="text-3xl font-bold mb-16 text-center">
-                  {t.experience?.title || "Experiência"}
-                </h2>
-
+              <motion.div variants={fadeUpVariants} className="max-w-5xl mx-auto">
+              <h2 className="text-3xl font-bold mb-16 text-center">
+                {t.experience?.title || "Experiência"}
+              </h2>
+              <motion.div variants={fadeUpVariants} className="space-y-8">
+                {experiences.map((exp, index) => (
                 <motion.div 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className="space-y-8"
+                  key={index} 
+                  variants={fadeUpVariants}
                 >
-                  {experiences.map((exp, index) => (
+
                     <Card
-                      key={index}
+
                       className="bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all overflow-hidden"
                     >
                       <div className="p-6">
@@ -768,32 +814,31 @@ export default function Home() {
                         </Button>
                       </div>
                     </Card>
-                    ))}
                     </motion.div>
-                  </div>
+                    ))}
+                  </motion.div>
+                  </motion.div>
                 </motion.section>
 
-            {/* Contact Section */}
-            <motion.section
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              id="contact"
-              className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
-            >
-              <div className="relative max-w-5xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">{t.contact.title}</h2>
-              <p className="text-muted-foreground mb-12">
-                {t.contact.description}
-              </p>
+                {/* Contact Section */}
+                <motion.section
+                  key="contact-section"
+                  variants={containerVariants}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true, margin: "-200px" }}
+                  id="contact"
+                  className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+                >
+                  <motion.div variants={fadeUpVariants} className="relative max-w-5xl mx-auto text-center">
+                  <h2 className="text-3xl font-bold mb-4">{t.contact.title}</h2>
+                  <p className="text-muted-foreground mb-12">
+                    {t.contact.description}
+                  </p>
+                  <motion.div variants={fadeUpVariants}>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
+
+
                 <Card className="overflow-hidden bg-card/50 backdrop-blur-sm">
                 <div className="p-6">
                   <div className="relative w-full max-w-[320px] mx-auto mb-8">
@@ -903,21 +948,23 @@ export default function Home() {
                 </div>
                 </Card>
                 </motion.div>
-                </div>
+                </motion.div>
               </motion.section>
-              </main>
-            <Footer />
-            </motion.div>
-          </motion.div>
+                        </main>
+                        <Footer />
+                      </motion.div>
+                      </motion.div>
 
-          {/* Modal */}
-          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-            <div className="text-center">
-            <h3 className="text-lg font-semibold mb-2">Aviso</h3>
-            <p className="text-muted-foreground">{modalMessage}</p>
-            </div>
-          </Modal>
-          </>
-        );
-      }
+                      <Modal 
+                      isOpen={isModalOpen} 
+                      onClose={() => setIsModalOpen(false)}
+                      >
+                      <div className="text-center">
+                        <h3 className="text-lg font-semibold mb-2">Aviso</h3>
+                        <p className="text-muted-foreground">{modalMessage}</p>
+                      </div>
+                      </Modal>
+                    </>
+                    );
+                  }
 
