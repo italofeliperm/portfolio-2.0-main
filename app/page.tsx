@@ -1,45 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 
-
-const containerVariants = {
-  initial: {
-    opacity: 0,
-    y: 20
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.215, 0.61, 0.355, 1],
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const fadeUpVariants = {
-  initial: {
-    opacity: 0,
-    y: 20
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.215, 0.61, 0.355, 1]
-    }
-  }
-};
-
-
-
-
 const GitHubIcon = () => (
+
   <svg
     width="20"
     height="20"
@@ -280,13 +245,7 @@ export default function Home() {
 
   return (
     <>
-      <motion.div
-        key="main-container"
-        variants={containerVariants}
-        initial="initial"
-        animate="animate"
-        className="relative min-h-screen"
-      >
+      <div className="relative min-h-screen">
         {/* Background Image */}
         <div
           className="fixed inset-0 z-0 backdrop-blur-sm"
@@ -307,36 +266,21 @@ export default function Home() {
         <div className="bg-gradient-overlay" />
 
         {/* Content */}
-        <motion.div
-          key="content-wrapper"
-          variants={containerVariants}
-          className="relative z-10"
-        >
+        <div className="relative z-10">
+
+
           <Navbar />
           <main>
 
 
             {/* Hero Section */}
-            <motion.section
-              key="hero-section"
-              variants={containerVariants}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, margin: "-200px" }}
-              className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8"
-            >
+            <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
 
-              <motion.div variants={fadeUpVariants} className="text-center">
-                <motion.p
-                  variants={fadeUpVariants}
-                  className="text-lg mb-4 text-muted-foreground"
-                >
+              <div className="text-center">
+                <p className="text-lg mb-4 text-muted-foreground">
                   {t.hero.greeting}
-                </motion.p>
-                <motion.div
-                  variants={fadeUpVariants}
-                  className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 mx-auto mb-8"
-                >
+                </p>
+                <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 mx-auto mb-8">
                   <Image
                     src={myPhoto}
                     alt="Profile"
@@ -344,26 +288,18 @@ export default function Home() {
                     fill
                     priority
                   />
-                </motion.div>
-                <motion.h1
-                  variants={fadeUpVariants}
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
-                >
+                </div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
                   {t.hero.name}
-                </motion.h1>
-                <motion.h2
-                  variants={fadeUpVariants}
-                  className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-8"
-                >
+                </h1>
+                <h2 className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-8">
                   {t.hero.role}
-                </motion.h2>
-                <motion.p
-                  variants={fadeUpVariants}
-                  className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12 md:whitespace-nowrap"
-                >
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12 md:whitespace-nowrap">
                   {t.hero.description}
-                </motion.p>
-                <motion.div variants={fadeUpVariants} className="flex justify-center space-x-4">
+                </p>
+                <div className="flex justify-center space-x-4">
+
                   <Button
                     size="lg"
                     className="gap-2"
@@ -381,23 +317,18 @@ export default function Home() {
                     <Linkedin className="h-5 w-5" />
                     LinkedIn
                   </Button>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
 
-            </motion.section>
+            </section>
 
             {/* About Section */}
-            <motion.section
-              key="about-section"
-              variants={containerVariants}
-              initial="initial"
-              whileInView="animate"
-
-              viewport={{ once: true, margin: "-200px" }}
+            <section
               id="about"
               className="py-20 px-4 sm:px-6 lg:px-8"
             >
-              <motion.div variants={fadeUpVariants} className="max-w-7xl mx-auto">
+              <div className="max-w-7xl mx-auto">
+
                 <h2 className="text-3xl font-bold mb-16 text-center">
                   {t.about.title}
                 </h2>
@@ -486,232 +417,203 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
-            </motion.section>
+              </div>
+            </section>
 
             {/* Skills Section */}
-            <motion.section
-              key="skills-section"
-              variants={containerVariants}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, margin: "-200px" }}
+            <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl font-bold mb-16 text-center">
+                {t.skills.title}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
 
-              id="skills"
-              className="py-20 px-4 sm:px-6 lg:px-8"
-            >
-              <motion.div
-                variants={fadeUpVariants}
-                className="max-w-7xl mx-auto"
-              >
-                <h2 className="text-3xl font-bold mb-16 text-center">
-                  {t.skills.title}
-                </h2>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
 
                   {/* Frontend Skills */}
-                  <Card className="bg-card/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500 group">
-                    <div className="p-6">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-500">
-                          <Layout className="h-6 w-6 text-primary" />
-                        </div>
-                        <h3 className="text-xl font-semibold">
-                          {t.skills.frontend}
-                        </h3>
-                      </div>
-                      <div className="space-y-2">
-                        {skills.frontend.map((skill, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
-                          >
-                            <div className="text-primary">{skill.icon}</div>
-                            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
-                              {skill.name}
-                            </span>
+                  <div>
+                    <Card className="bg-card/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500 group">
+                      <div className="p-6">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-500">
+                            <Layout className="h-6 w-6 text-primary" />
                           </div>
-                        ))}
+                          <h3 className="text-xl font-semibold">
+                            {t.skills.frontend}
+                          </h3>
+                        </div>
+                        <div className="space-y-2">
+                          {skills.frontend.map((skill, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
+                            >
+                              <div className="text-primary">{skill.icon}</div>
+                              <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                                {skill.name}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </Card>
+                    </Card>
+                  </div>
 
                   {/* Backend Skills */}
-                  <Card className="bg-card/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500 group">
-                    <div className="p-6">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-500">
-                          <Server className="h-6 w-6 text-primary" />
-                        </div>
-                        <h3 className="text-xl font-semibold">
-                          {t.skills.backend}
-                        </h3>
-                      </div>
-                      <div className="space-y-2">
-                        {skills.backend.map((skill, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
-                          >
-                            <div className="text-primary">{skill.icon}</div>
-                            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
-                              {skill.name}
-                            </span>
+                  <div>
+                    <Card className="bg-card/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500 group">
+                      <div className="p-6">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-500">
+                            <Server className="h-6 w-6 text-primary" />
                           </div>
-                        ))}
+                          <h3 className="text-xl font-semibold">
+                            {t.skills.backend}
+                          </h3>
+                        </div>
+                        <div className="space-y-2">
+                          {skills.backend.map((skill, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
+                            >
+                              <div className="text-primary">{skill.icon}</div>
+                              <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                                {skill.name}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </Card>
+                    </Card>
+                  </div>
 
                   {/* DevOps Skills */}
-                  <Card className="bg-card/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500 group">
-                    <div className="p-6">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-500">
-                          <Cpu className="h-6 w-6 text-primary" />
-                        </div>
-                        <h3 className="text-xl font-semibold">
-                          {t.skills.devops}
-                        </h3>
-                      </div>
-                      <div className="space-y-2">
-                        {skills.devops.map((skill, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
-                          >
-                            <div className="text-primary">{skill.icon}</div>
-                            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
-                              {skill.name}
-                            </span>
+                  <div>
+                    <Card className="bg-card/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500 group">
+                      <div className="p-6">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-500">
+                            <Cpu className="h-6 w-6 text-primary" />
                           </div>
-                        ))}
+                          <h3 className="text-xl font-semibold">
+                            {t.skills.devops}
+                          </h3>
+                        </div>
+                        <div className="space-y-2">
+                          {skills.devops.map((skill, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
+                            >
+                              <div className="text-primary">{skill.icon}</div>
+                              <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                                {skill.name}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </Card>
+                    </Card>
+                  </div>
 
                   {/* Database Skills */}
-                  <Card className="bg-card/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500 group">
-                    <div className="p-6">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-500">
-                          <Database className="h-6 w-6 text-primary" />
-                        </div>
-                        <h3 className="text-xl font-semibold">
-                          {t.skills.database}
-                        </h3>
-                      </div>
-                      <div className="space-y-2">
-                        {skills.database.map((skill, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
-                          >
-                            <div className="text-primary">{skill.icon}</div>
-                            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
-                              {skill.name}
-                            </span>
+                  <div>
+                    <Card className="bg-card/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500 group">
+                      <div className="p-6">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-500">
+                            <Database className="h-6 w-6 text-primary" />
                           </div>
-                        ))}
+                          <h3 className="text-xl font-semibold">
+                            {t.skills.database}
+                          </h3>
+                        </div>
+                        <div className="space-y-2">
+                          {skills.database.map((skill, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center gap-2 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-all duration-500"
+                            >
+                              <div className="text-primary">{skill.icon}</div>
+                              <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                                {skill.name}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </Card>
+                    </Card>
+                  </div>
                 </div>
-              </motion.div>
-            </motion.section>
+                </div>
+              </section>
+
 
             {/* Projects Section */}
-            <motion.section
-              key="projects-section"
-              variants={containerVariants}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, margin: "-200px" }}
-
-              id="projects"
-              className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50"
-            >
-              <motion.div
-                variants={fadeUpVariants}
-                className="max-w-7xl mx-auto"
-              >
+            <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50">
+              <div className="max-w-7xl mx-auto">
                 <h2 className="text-3xl font-bold mb-12 text-center">
                   {t.projects.title}
                 </h2>
-
-                <motion.div
-                  variants={fadeUpVariants}
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {projects.map((project, index) => (
-                    <Card
-                      key={index}
-                      className="overflow-hidden hover:shadow-lg transition-shadow"
-                    >
-                      <div
-                        className="h-48 bg-cover bg-center project-image"
-                        style={{ backgroundImage: `url(${project.image})` }}
-                      />
-                      <div className="p-6">
-                        <h3 className="text-xl font-semibold mb-2">
-                          {project.title}
-                        </h3>
-                        <p className="text-muted-foreground mb-4">
-                          {project.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {project.tags.map((tag, tagIndex) => (
-                            <span
-                              key={tagIndex}
-                              className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        <Button
-                          variant="outline"
-                          className="w-full gap-2"
-                          onClick={() => window.open(project.link, "_blank")}
-                        >
-                          {t.projects.viewProject}
-                          <ExternalLink className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </Card>
-                  ))}
-                </motion.div>
-              </motion.div>
-            </motion.section>
+                    <div key={index}>
+                      <Card className="overflow-hidden hover:shadow-lg transition-shadow">
 
+                        <div
+                          className="h-48 bg-cover bg-center project-image"
+                          style={{ backgroundImage: `url(${project.image})` }}
+                        />
+                        <div className="p-6">
+                          <h3 className="text-xl font-semibold mb-2">
+                            {project.title}
+                          </h3>
+                          <p className="text-muted-foreground mb-4">
+                            {project.description}
+                          </p>
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {project.tags.map((tag, tagIndex) => (
+                              <span
+                                key={tagIndex}
+                                className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          <Button
+                            variant="outline"
+                            className="w-full gap-2"
+                            onClick={() => window.open(project.link, "_blank")}
+                          >
+                            {t.projects.viewProject}
+                            <ExternalLink className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </Card>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
 
             {/* Experience Section */}
-            <motion.section
-              key="experience-section"
-              variants={containerVariants}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, margin: "-200px" }}
 
+            <section
               id="experience"
               className="py-20 px-4 sm:px-6 lg:px-8"
             >
-              <motion.div variants={fadeUpVariants} className="max-w-5xl mx-auto">
-                <h2 className="text-3xl font-bold mb-16 text-center">
+              <div className="max-w-5xl mx-auto">
+                <h2
+                  className="text-3xl font-bold mb-16 text-center"
+                >
                   {t.experience?.title || "Experiência"}
                 </h2>
-                <motion.div variants={fadeUpVariants} className="space-y-8">
+                <div className="space-y-8">
                   {experiences.map((exp, index) => (
-                    <motion.div
-                      key={index}
-                      variants={fadeUpVariants}
-                    >
+                    <div key={index}>
 
-                      <Card
-
-                        className="bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all overflow-hidden"
-                      >
+                      <Card className="bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all overflow-hidden">
                         <div className="p-6">
                           <div className="flex items-start justify-between gap-4">
                             <div className="flex-1">
@@ -812,33 +714,24 @@ export default function Home() {
                           </Button>
                         </div>
                       </Card>
-                    </motion.div>
+                    </div>
                   ))}
-                </motion.div>
-              </motion.div>
-            </motion.section>
+                </div>
+              </div>
+            </section>
 
             {/* Contact Section */}
-            <motion.section
-              key="contact-section"
-              variants={containerVariants}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, margin: "-200px" }}
-              id="contact"
-              className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
-            >
-              <motion.div variants={fadeUpVariants} className="relative max-w-5xl mx-auto text-center">
+            <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+              <div className="relative max-w-5xl mx-auto text-center">
                 <h2 className="text-3xl font-bold mb-4">{t.contact.title}</h2>
                 <p className="text-muted-foreground mb-12">
                   {t.contact.description}
                 </p>
-                <motion.div variants={fadeUpVariants}>
-
-
-
+                <div>
                   <Card className="overflow-hidden bg-card/50 backdrop-blur-sm">
+
                     <div className="p-6">
+                      {/* Profile section */}
                       <div className="relative w-full max-w-[320px] mx-auto mb-8">
                         <div className="relative aspect-square rounded-xl overflow-hidden bg-muted">
                           <img
@@ -847,7 +740,6 @@ export default function Home() {
                             className="w-full h-full object-contain transform scale-100 hover:scale-105 transition-transform duration-700"
                           />
                         </div>
-
                         <div className="text-center mt-8">
                           <h4 className="text-4xl font-bold text-primary/90">
                             {t.contact.profile.name}
@@ -855,113 +747,116 @@ export default function Home() {
                         </div>
                       </div>
 
-                      {/* Opções de contato */}
+                      {/* Contact options */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                        {/* Agendamento */}
-                        <Card
-                          className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                          onClick={() =>
-                            window.open(
-                              "mailto:gabrielanselmo29@gmail.com?subject=Agendamento de Reunião"
-                            )
-                          }
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                              <Calendar className="h-6 w-6 text-primary" />
+                        {/* Scheduling */}
+                        <div>
+                          <Card
+                            className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
+                            onClick={() => window.open("mailto:gabrielanselmo29@gmail.com?subject=Agendamento de Reunião")}
+                          >
+                            <div className="flex items-center gap-4">
+                              <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                                <Calendar className="h-6 w-6 text-primary" />
+                              </div>
+                              <div className="text-left">
+                                <h3 className="font-semibold mb-1">
+                                  {t.contact.schedule.title}
+                                </h3>
+                                <p className="text-sm text-muted-foreground">
+                                  {t.contact.schedule.description}
+                                </p>
+                              </div>
                             </div>
-                            <div className="text-left">
-                              <h3 className="font-semibold mb-1">
-                                {t.contact.schedule.title}
-                              </h3>
-                              <p className="text-sm text-muted-foreground">
-                                {t.contact.schedule.description}
-                              </p>
-                            </div>
-                          </div>
-                        </Card>
+                          </Card>
+                        </div>
 
                         {/* WhatsApp Business */}
-                        <Card
-                          className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                          onClick={() =>
-                            showUnavailableMessage("WhatsApp Business")
-                          }
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                              <MessageCircle className="h-6 w-6 text-primary" />
+                        <div>
+                          <Card
+                            className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
+                            onClick={() => showUnavailableMessage("WhatsApp Business")}
+                          >
+                            <div className="flex items-center gap-4">
+                              <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                                <MessageCircle className="h-6 w-6 text-primary" />
+                              </div>
+                              <div className="text-left">
+                                <h3 className="font-semibold mb-1">
+                                  {t.contact.whatsapp.title}
+                                </h3>
+                                <p className="text-sm text-muted-foreground">
+                                  {t.contact.whatsapp.description}
+                                </p>
+                              </div>
                             </div>
-                            <div className="text-left">
-                              <h3 className="font-semibold mb-1">
-                                {t.contact.whatsapp.title}
-                              </h3>
-                              <p className="text-sm text-muted-foreground">
-                                {t.contact.whatsapp.description}
-                              </p>
-                            </div>
-                          </div>
-                        </Card>
+                          </Card>
+                        </div>
 
                         {/* Telegram */}
-                        <Card
-                          className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                          onClick={() => showUnavailableMessage("Telegram")}
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                              <Send className="h-6 w-6 text-primary" />
+                        <div>
+                          <Card
+                            className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
+                            onClick={() => showUnavailableMessage("Telegram")}
+                          >
+                            <div className="flex items-center gap-4">
+                              <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                                <Send className="h-6 w-6 text-primary" />
+                              </div>
+                              <div className="text-left">
+                                <h3 className="font-semibold mb-1">
+                                  {t.contact.telegram.title}
+                                </h3>
+                                <p className="text-sm text-muted-foreground">
+                                  {t.contact.telegram.description}
+                                </p>
+                              </div>
                             </div>
-                            <div className="text-left">
-                              <h3 className="font-semibold mb-1">
-                                {t.contact.telegram.title}
-                              </h3>
-                              <p className="text-sm text-muted-foreground">
-                                {t.contact.telegram.description}
-                              </p>
-                            </div>
-                          </div>
-                        </Card>
+                          </Card>
+                        </div>
 
                         {/* Discord */}
-                        <Card
-                          className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                          onClick={() => showUnavailableMessage("Discord")}
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                              <Headphones className="h-6 w-6 text-primary" />
+                        <div>
+                          <Card
+                            className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
+                            onClick={() => showUnavailableMessage("Discord")}
+                          >
+                            <div className="flex items-center gap-4">
+                              <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                                <Headphones className="h-6 w-6 text-primary" />
+                              </div>
+                              <div className="text-left">
+                                <h3 className="font-semibold mb-1">
+                                  {t.contact.discord.title}
+                                </h3>
+                                <p className="text-sm text-muted-foreground">
+                                  {t.contact.discord.description}
+                                </p>
+                              </div>
                             </div>
-                            <div className="text-left">
-                              <h3 className="font-semibold mb-1">
-                                {t.contact.discord.title}
-                              </h3>
-                              <p className="text-sm text-muted-foreground">
-                                {t.contact.discord.description}
-                              </p>
-                            </div>
-                          </div>
-                        </Card>
+                          </Card>
+                        </div>
                       </div>
                     </div>
                   </Card>
-                </motion.div>
-              </motion.div>
-            </motion.section>
+                </div>
+              </div>
+            </section>
           </main>
           <Footer />
-        </motion.div>
-      </motion.div>
+        </div>
+        </div>
 
-      <Modal
+        <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-      >
+        >
         <div className="text-center">
           <h3 className="text-lg font-semibold mb-2">Aviso</h3>
           <p className="text-muted-foreground">{modalMessage}</p>
         </div>
-      </Modal>
-    </>
-  );
-}
+        </Modal>
+      </>
+      );
+    }
+
