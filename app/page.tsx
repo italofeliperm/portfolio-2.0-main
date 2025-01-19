@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -43,6 +44,12 @@ import {
 export default function Home() {
   const { language } = useI18nStore();
   const t = translations[language];
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 }
+  };
 
   const [expandedExperience, setExpandedExperience] = useState<number | null>(
     null
@@ -226,7 +233,12 @@ export default function Home() {
 
   return (
     <>
-        <div className="relative min-h-screen">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="relative min-h-screen"
+        >
         {/* Background Image */}
         <div 
           className="fixed inset-0 z-0 backdrop-blur-sm"
@@ -247,16 +259,31 @@ export default function Home() {
         <div className="bg-gradient-overlay" />
 
         {/* Content */}
-        <div className="relative z-10">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative z-10"
+        >
           <Navbar />
           <main>
             {/* Hero Section */}
-            <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-                <div className="text-center">
-                <p className="text-lg mb-4 text-muted-foreground">
+            <motion.section 
+              initial="initial"
+              animate="animate"
+              className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8"
+            >
+              <div className="text-center">
+              <motion.p 
+                variants={fadeInUp}
+                className="text-lg mb-4 text-muted-foreground"
+              >
                   {t.hero.greeting}
-                </p>
-                <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 mx-auto mb-8">
+                </motion.p>
+                <motion.div 
+                  variants={fadeInUp}
+                  className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 mx-auto mb-8"
+                >
                   <Image
                   src={myPhoto}
                   alt="Profile"
@@ -264,18 +291,30 @@ export default function Home() {
                   fill
                   priority
                   />
-                </div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+                </motion.div>
+                <motion.h1 
+                  variants={fadeInUp}
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
+                >
                   {t.hero.name}
-                </h1>
+                </motion.h1>
 
-                <h2 className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-8">
+                <motion.h2 
+                  variants={fadeInUp}
+                  className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-8"
+                >
                   {t.hero.role}
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12 md:whitespace-nowrap">
+                </motion.h2>
+                <motion.p 
+                  variants={fadeInUp}
+                  className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12 md:whitespace-nowrap"
+                >
                   {t.hero.description}
-                </p>
-                <div className="flex justify-center space-x-4">
+                </motion.p>
+                <motion.div 
+                  variants={fadeInUp}
+                  className="flex justify-center space-x-4"
+                >
                   <Button 
                   size="lg" 
                   className="gap-2"
@@ -293,12 +332,19 @@ export default function Home() {
                   <Linkedin className="h-5 w-5" />
                   LinkedIn
                   </Button>
+                </motion.div>
                 </div>
-              </div>
-            </section>
+              </motion.section>
 
             {/* About Section */}
-            <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
+            <motion.section
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              id="about" 
+              className="py-20 px-4 sm:px-6 lg:px-8"
+            >
               <div className="max-w-7xl mx-auto">
                 <h2 className="text-3xl font-bold mb-16 text-center">
                   {t.about.title}
@@ -392,7 +438,14 @@ export default function Home() {
             </section>
 
             {/* Skills Section */}
-            <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
+            <motion.section
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              id="skills" 
+              className="py-20 px-4 sm:px-6 lg:px-8"
+            >
               <div className="max-w-7xl mx-auto">
                 <h2 className="text-3xl font-bold mb-16 text-center">
                   {t.skills.title}
@@ -511,7 +564,11 @@ export default function Home() {
             </section>
 
             {/* Projects Section */}
-            <section
+            <motion.section
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
               id="projects"
               className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/50"
             >
@@ -519,7 +576,13 @@ export default function Home() {
                 <h2 className="text-3xl font-bold mb-12 text-center">
                   {t.projects.title}
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
                   {projects.map((project, index) => (
                     <Card
                       key={index}
@@ -556,19 +619,32 @@ export default function Home() {
                         </Button>
                       </div>
                     </Card>
-                  ))}
-                </div>
-              </div>
-            </section>
+                    ))}
+                  </motion.div>
+                  </div>
+                </motion.section>
 
             {/* Experience Section */}
-            <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8">
+            <motion.section
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              id="experience" 
+              className="py-20 px-4 sm:px-6 lg:px-8"
+            >
               <div className="max-w-5xl mx-auto">
                 <h2 className="text-3xl font-bold mb-16 text-center">
                   {t.experience?.title || "Experiência"}
                 </h2>
 
-                <div className="space-y-8">
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="space-y-8"
+                >
                   {experiences.map((exp, index) => (
                     <Card
                       key={index}
@@ -676,145 +752,155 @@ export default function Home() {
                         </Button>
                       </div>
                     </Card>
-                  ))}
-                </div>
-              </div>
-            </section>
+                    ))}
+                  </motion.div>
+                  </div>
+                </motion.section>
 
             {/* Contact Section */}
-            <section
+            <motion.section
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
               id="contact"
               className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
             >
               <div className="relative max-w-5xl mx-auto text-center">
-                <h2 className="text-3xl font-bold mb-4">{t.contact.title}</h2>
-                <p className="text-muted-foreground mb-12">
-                  {t.contact.description}
-                </p>
+              <h2 className="text-3xl font-bold mb-4">{t.contact.title}</h2>
+              <p className="text-muted-foreground mb-12">
+                {t.contact.description}
+              </p>
 
-                {/* Profile Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
                 <Card className="overflow-hidden bg-card/50 backdrop-blur-sm">
-                  <div className="p-6">
-                    <div className="relative w-full max-w-[320px] mx-auto mb-8">
-                      <div className="relative aspect-square rounded-xl overflow-hidden bg-muted">
-                        <img
-                          src={myPhoto.src}
-                          alt="Profile"
-                          className="w-full h-full object-contain transform scale-100 hover:scale-105 transition-transform duration-700"
-                        />
-                      </div>
-
-                      <div className="text-center mt-8">
-                        <h4 className="text-4xl font-bold text-primary/90">
-                          {t.contact.profile.name}
-                        </h4>
-                      </div>
-                    </div>
-
-                    {/* Opções de contato */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                      {/* Agendamento */}
-                      <Card
-                        className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                        onClick={() =>
-                          window.open(
-                            "mailto:gabrielanselmo29@gmail.com?subject=Agendamento de Reunião"
-                          )
-                        }
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                            <Calendar className="h-6 w-6 text-primary" />
-                          </div>
-                          <div className="text-left">
-                            <h3 className="font-semibold mb-1">
-                              {t.contact.schedule.title}
-                            </h3>
-                            <p className="text-sm text-muted-foreground">
-                              {t.contact.schedule.description}
-                            </p>
-                          </div>
-                        </div>
-                      </Card>
-
-                      {/* WhatsApp Business */}
-                      <Card
-                        className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                        onClick={() =>
-                          showUnavailableMessage("WhatsApp Business")
-                        }
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                            <MessageCircle className="h-6 w-6 text-primary" />
-                          </div>
-                          <div className="text-left">
-                            <h3 className="font-semibold mb-1">
-                              {t.contact.whatsapp.title}
-                            </h3>
-                            <p className="text-sm text-muted-foreground">
-                              {t.contact.whatsapp.description}
-                            </p>
-                          </div>
-                        </div>
-                      </Card>
-
-                      {/* Telegram */}
-                      <Card
-                        className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                        onClick={() => showUnavailableMessage("Telegram")}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                            <Send className="h-6 w-6 text-primary" />
-                          </div>
-                          <div className="text-left">
-                            <h3 className="font-semibold mb-1">
-                              {t.contact.telegram.title}
-                            </h3>
-                            <p className="text-sm text-muted-foreground">
-                              {t.contact.telegram.description}
-                            </p>
-                          </div>
-                        </div>
-                      </Card>
-
-                      {/* Discord */}
-                      <Card
-                        className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
-                        onClick={() => showUnavailableMessage("Discord")}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                            <Headphones className="h-6 w-6 text-primary" />
-                          </div>
-                          <div className="text-left">
-                            <h3 className="font-semibold mb-1">
-                              {t.contact.discord.title}
-                            </h3>
-                            <p className="text-sm text-muted-foreground">
-                              {t.contact.discord.description}
-                            </p>
-                          </div>
-                        </div>
-                      </Card>
-                    </div>
+                <div className="p-6">
+                  <div className="relative w-full max-w-[320px] mx-auto mb-8">
+                  <div className="relative aspect-square rounded-xl overflow-hidden bg-muted">
+                    <img
+                    src={myPhoto.src}
+                    alt="Profile"
+                    className="w-full h-full object-contain transform scale-100 hover:scale-105 transition-transform duration-700"
+                    />
                   </div>
-                </Card>
-              </div>
-            </section>
-          </main>
-          <Footer />
-        </div>
-      </div>
 
-      {/* Modal de indisponibilidade */}
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <div className="text-center">
-          <h3 className="text-lg font-semibold mb-2">Aviso</h3>
-          <p className="text-muted-foreground">{modalMessage}</p>
-        </div>
-      </Modal>
-    </>
-  );
-}
+                  <div className="text-center mt-8">
+                    <h4 className="text-4xl font-bold text-primary/90">
+                    {t.contact.profile.name}
+                    </h4>
+                  </div>
+                  </div>
+
+                  {/* Opções de contato */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                  {/* Agendamento */}
+                  <Card
+                    className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
+                    onClick={() =>
+                    window.open(
+                      "mailto:gabrielanselmo29@gmail.com?subject=Agendamento de Reunião"
+                    )
+                    }
+                  >
+                    <div className="flex items-center gap-4">
+                    <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <Calendar className="h-6 w-6 text-primary" />
+                    </div>
+                    <div className="text-left">
+                      <h3 className="font-semibold mb-1">
+                      {t.contact.schedule.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                      {t.contact.schedule.description}
+                      </p>
+                    </div>
+                    </div>
+                  </Card>
+
+                  {/* WhatsApp Business */}
+                  <Card
+                    className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
+                    onClick={() =>
+                    showUnavailableMessage("WhatsApp Business")
+                    }
+                  >
+                    <div className="flex items-center gap-4">
+                    <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <MessageCircle className="h-6 w-6 text-primary" />
+                    </div>
+                    <div className="text-left">
+                      <h3 className="font-semibold mb-1">
+                      {t.contact.whatsapp.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                      {t.contact.whatsapp.description}
+                      </p>
+                    </div>
+                    </div>
+                  </Card>
+
+                  {/* Telegram */}
+                  <Card
+                    className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
+                    onClick={() => showUnavailableMessage("Telegram")}
+                  >
+                    <div className="flex items-center gap-4">
+                    <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <Send className="h-6 w-6 text-primary" />
+                    </div>
+                    <div className="text-left">
+                      <h3 className="font-semibold mb-1">
+                      {t.contact.telegram.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                      {t.contact.telegram.description}
+                      </p>
+                    </div>
+                    </div>
+                  </Card>
+
+                  {/* Discord */}
+                  <Card
+                    className="p-6 bg-card/30 hover:bg-card/50 transition-colors group cursor-pointer"
+                    onClick={() => showUnavailableMessage("Discord")}
+                  >
+                    <div className="flex items-center gap-4">
+                    <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <Headphones className="h-6 w-6 text-primary" />
+                    </div>
+                    <div className="text-left">
+                      <h3 className="font-semibold mb-1">
+                      {t.contact.discord.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                      {t.contact.discord.description}
+                      </p>
+                    </div>
+                    </div>
+                  </Card>
+                  </div>
+                </div>
+                </Card>
+              </motion.div>
+              </div>
+            </motion.section>
+            </main>
+            <Footer />
+            </motion.div>
+          </motion.div>
+
+          {/* Modal */}
+          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+            <div className="text-center">
+            <h3 className="text-lg font-semibold mb-2">Aviso</h3>
+            <p className="text-muted-foreground">{modalMessage}</p>
+            </div>
+          </Modal>
+          </>
+        );
+      }
